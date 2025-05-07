@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desglose paso a paso</title>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(45deg, #000000, #bdc3c7);
+      background-size: 400% 400%;
+      animation: gradientAnimation 5s ease infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ecf0f1;
+      margin-top: 30px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .step-box-first, .step-box {
+      border-radius: 50%;
+      padding: 40px;
+      width: 260px;
+      height: 260px;
+      margin: 20px 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      color: #ecf0f1;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards, moveIn 1s ease forwards;
+    }
+
+    .step-box-first { background-color: #e74c3c; }
+    .step-box { background-color: #34495e; }
+
+    .square-box {
+      background: linear-gradient(45deg, #1abc9c, #16a085);
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-top: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards;
+    }
+
+    .explanation {
+      font-size: 1.2rem;
+      color: #ecf0f1;
+      margin-top: 10px;
+      width: 80%;
+      background: rgba(44, 62, 80, 0.7);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .formula-title {
+      font-size: 1.5rem;
+      color: #ecf0f1;
+      margin-bottom: 30px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      gap: 20px;
+    }
+
+    .nav-buttons button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #1abc9c;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #16a085;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes moveIn {
+      0% { transform: translateY(-100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Desglose paso a paso</h1>
+
+  <!-- Ejercicio 1 -->
+  <div class="container active" id="ejercicio1">
+    <div class="formula-title">
+      <p> \( \frac{Ln\left(3\left(x - \frac{1}{2}\right)\right)}{5} \)</p>
+    </div>
+
+    <div class="steps-container">
+      <div class="step-box-first">\( x \)</div>
+      <div class="square-box">\( x - () \)</div>
+      <p class="explanation">A \( x \) le restamos \( \frac{1}{2} \)</p>
+
+      <div class="step-box">\( x - \frac{1}{2} \)</div>
+      <div class="square-box">\( 3( ) \)</div>
+      <p class="explanation">Multiplicamos toda la expresión anterior por 3</p>
+
+      <div class="step-box">\( 3(x - \frac{1}{2}) \)</div>
+      <div class="square-box">\( Ln( ) \)</div>
+      <p class="explanation">Aplicamos el logaritmo natural</p>
+
+      <div class="step-box">\( Ln(3(x - \frac{1}{2})) \)</div>
+      <div class="square-box">$$\frac{()}{5}$$</div>
+      <p class="explanation">Dividimos todo entre 5</p>
+
+      <div class="step-box">\( \frac{Ln(3(x - \frac{1}{2}))}{5} \)</div>
+    </div>
+
+    <div class="nav-buttons">
+      <div></div>
+      <button onclick="mostrarEjercicio(2)">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- Ejercicio 2 -->
+  <div class="container" id="ejercicio2">
+    <div class="formula-title">
+      <p> \( e^{3.2y - 0.41} + 1.14 \)</p>
+    </div>
+
+    <div class="steps-container">
+      <div class="step-box-first">\( y \)</div>
+      <div class="square-box">\( () \cdot y \)</div>
+      <p class="explanation">Multiplicamos \( y \) por 3.2</p>
+
+      <div class="step-box">\( 3.2y \)</div>
+      <div class="square-box">\( ()-0.41 \)</div>
+      <p class="explanation">A la expresión le restamos 0.41</p>
+
+      <div class="step-box">\( 3.2y - 0.41 \)</div>
+      <div class="square-box">\( e^{()} \)</div>
+      <p class="explanation">Elevamos \( e \) a la expresión anterior</p>
+
+      <div class="step-box">\( e^{3.2y - 0.41} \)</div>
+      <div class="square-box">\( ()+ 1.14 \)</div>
+      <p class="explanation">Finalmente, sumamos 1.14 al resultado</p>
+
+      <div class="step-box">\( e^{3.2y - 0.41} + 1.14 \)</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="mostrarEjercicio(1)">Anterior</button>
+      <div></div>
+    </div>
+  </div>
+
+  <script>
+    function mostrarEjercicio(n) {
+      document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+      document.getElementById(`ejercicio${n}`).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.step-box').forEach((el) => {
+      el.addEventListener('mouseover', () => {
+        el.style.transform = 'scale(1.1)';
+      });
+      el.addEventListener('mouseout', () => {
+        el.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+
+</body>
+</html>
