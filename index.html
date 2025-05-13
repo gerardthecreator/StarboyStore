@@ -1,234 +1,488 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desglose paso a paso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starboy - Moda Urbana y Deportiva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@900&display=swap');
 
-  <script type="text/javascript" async
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
+        /* Estilos globales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(45deg, #000000, #bdc3c7);
-      background-size: 400% 400%;
-      animation: gradientAnimation 5s ease infinite;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #000000, #1c2526);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #00d4ff #2c2f3a;
+        }
 
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        /* Barra de desplazamiento personalizado */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #ecf0f1;
-      margin-top: 30px;
-    }
+        body::-webkit-scrollbar-track {
+            background: #2c2f3a;
+            border-radius: 4px;
+        }
 
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      background-color: rgba(0, 0, 0, 0.4);
-      display: none;
-    }
+        body::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
 
-    .active {
-      display: block;
-    }
+        body::-webkit-scrollbar-thumb:hover {
+            background: #ff0048;
+        }
 
-    .steps-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-    }
+        /* Encabezado */
+        header {
+            background: linear-gradient(to right, #0a0f1c, #1b263b);
+            color: #ffffff;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
 
-    .step-box-first, .step-box {
-      border-radius: 50%;
-      padding: 40px;
-      width: 260px;
-      height: 260px;
-      margin: 20px 0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.8rem;
-      color: #ecf0f1;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      animation: fadeInUp 0.5s forwards, moveIn 1s ease forwards;
-    }
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem;
+            animation: bounce 2s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 0 0 8px #00d4ff;
+        }
 
-    .step-box-first { background-color: #e74c3c; }
-    .step-box { background-color: #34495e; }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
 
-    .square-box {
-      background: linear-gradient(45deg, #1abc9c, #16a085);
-      padding: 20px;
-      width: 220px;
-      text-align: center;
-      font-size: 1.2rem;
-      color: #fff;
-      margin-top: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      margin-bottom: 30px;
-      opacity: 0;
-      animation: fadeInUp 0.5s forwards;
-    }
+        header p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            color: #b0b0b0;
+        }
 
-    .explanation {
-      font-size: 1.2rem;
-      color: #ecf0f1;
-      margin-top: 10px;
-      width: 80%;
-      background: rgba(44, 62, 80, 0.7);
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
+        /* Contenido principal */
+        .content {
+            max-width: 100%;
+            margin: 1.5rem auto;
+            padding: 0 0.5rem;
+        }
 
-    .formula-title {
-      font-size: 1.5rem;
-      color: #ecf0f1;
-      margin-bottom: 30px;
-    }
+        .content h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
 
-    .nav-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-      gap: 20px;
-    }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 0 0.5rem;
+        }
 
-    .nav-buttons button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 10px;
-      background-color: #1abc9c;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+        .product {
+            background: #2c2f3a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            border: 1px solid #00d4ff;
+            animation: zoomIn 0.5s ease forwards;
+        }
 
-    .nav-buttons button:hover {
-      background-color: #16a085;
-    }
+        .product:hover {
+            transform: translateY(-8px) rotateZ(2deg);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.4);
+            animation: float 0.3s ease forwards;
+        }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-    @keyframes moveIn {
-      0% { transform: translateY(-100px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-  </style>
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotateZ(0);
+            }
+            100% {
+                transform: translateY(-8px) rotateZ(2deg);
+            }
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            background: #2c2f3a;
+            padding: 0.5rem;
+            transition: transform 0.4s ease;
+            filter: brightness(90%);
+            max-width: 100%;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
+            filter: brightness(100%);
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: #00d4ff;
+            text-transform: uppercase;
+        }
+
+        .product p {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            color: #b0b0b0;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #ff0048;
+        }
+
+        /* Ventana emergente */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            animation: blurIn 0.3s forwards;
+        }
+
+        @keyframes blurIn {
+            0% {
+                backdrop-filter: blur(0);
+                opacity: 0;
+            }
+            100% {
+                backdrop-filter: blur(3px);
+                opacity: 1;
+            }
+        }
+
+        .expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            max-width: 360px;
+            max-height: 65vh;
+            background: #1c2526;
+            z-index: 999;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+            overflow: hidden;
+            animation: popUp 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #00d4ff;
+        }
+
+        @keyframes popUp {
+            0% {
+                transform: translate(-50%, -50%) scale(0.7);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .expanded img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            background: #1c2526;
+            padding: 0.5rem;
+            filter: brightness(90%);
+            border-bottom: 1px solid #00d4ff;
+            max-width: 100%;
+        }
+
+        .expanded-details {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .expanded-details h2 {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .expanded-details p {
+            font-size: 0.75rem;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+            color: #b0b0b0;
+        }
+
+        .expanded-details .label {
+            font-size: 0.8rem;
+            color: #00d4ff;
+            margin-bottom: 0.2rem;
+            font-weight: bold;
+        }
+
+        .expanded-details ul {
+            margin: 0 0 0.4rem 1rem;
+            color: #e0e0e0;
+        }
+
+        .expanded-details ul li {
+            margin-bottom: 0.1rem;
+            font-size: 0.7rem;
+        }
+
+        .expanded-details .price {
+            font-size: 0.8rem;
+            margin-bottom: 0.4rem;
+            color: #ff0048;
+        }
+
+        .expanded-details button {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #ff0048, #00d4ff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            animation: pulse 2s infinite;
+            margin-top: 0.5rem;
+            padding-bottom: 1rem;
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+        }
+
+        .expanded-details button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.7);
+            background: linear-gradient(45deg, #00d4ff, #ff0048);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.02);
+                opacity: 0.95;
+            }
+        }
+
+        .expanded-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #00d4ff;
+            z-index: 1000;
+            background: #2c2f3a;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .expanded-close:hover {
+            color: #ff0048;
+            transform: rotate(360deg);
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #0a0f1c;
+            color: #b0b0b0;
+            font-size: 0.8rem;
+            border-top: 1px solid #00d4ff;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Starboy</h1>
+        <p>Camisas con estilo para cualquier vibe</p>
+    </header>
 
-  <h1>Desglose paso a paso</h1>
-
-  <!-- Ejercicio 1 -->
-  <div class="container active" id="ejercicio1">
-    <div class="formula-title">
-      <p> \( \frac{Ln\left(3\left(x - \frac{1}{2}\right)\right)}{5} \)</p>
+    <div class="content">
+        <h2>Nuestras Camisas</h2>
+        <div class="products" id="products"></div>
     </div>
 
-    <div class="steps-container">
-      <div class="step-box-first">\( x \)</div>
-      <div class="square-box">\( x - () \)</div>
-      <p class="explanation">A \( x \) le restamos \( \frac{1}{2} \)</p>
+    <footer>
+        © 2025 Starboy. Todos los derechos reservados.
+    </footer>
 
-      <div class="step-box">\( x - \frac{1}{2} \)</div>
-      <div class="square-box">\( 3( ) \)</div>
-      <p class="explanation">Multiplicamos toda la expresión anterior por 3</p>
+    <script>
+        // Lista de camisas oversize y deportivas (compatible con ES15/ES2024)
+        const productos = [
+            {
+                nombre: "Oversize Urban Vibe",
+                descripcion: "Camisa oversize con estampado gráfico urbano.",
+                precio: "$35",
+                extras: [
+                    "100% algodón",
+                    "Tallas M-XL",
+                    "Estampado duradero",
+                    "Corte relajado"
+                ],
+                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+            },
+            {
+                nombre: "Oversize Neon Wave",
+                descripcion: "Camisa oversize con diseño neón vibrante.",
+                precio: "$40",
+                extras: [
+                    "Tejido transpirable",
+                    "Tallas S-XXL",
+                    "Detalles reflectantes",
+                    "Streetwear"
+                ],
+                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+            },
+            {
+                nombre: "Fútbol Pro Madrid",
+                descripcion: "Réplica oficial del Real Madrid.",
+                precio: "$50",
+                extras: [
+                    "Poliéster reciclado",
+                    "Anti-sudor",
+                    "Tallas S-XL",
+                    "Escudo bordado"
+                ],
+                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+            },
+            {
+                nombre: "Fútbol Custom Strike",
+                descripcion: "Camisa personalizable con tu nombre.",
+                precio: "$55",
+                extras: [
+                    "Diseño a medida",
+                    "Tejido ligero",
+                    "Tallas M-XXL",
+                    "Colores personalizados"
+                ],
+                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+            }
+        ];
 
-      <div class="step-box">\( 3(x - \frac{1}{2}) \)</div>
-      <div class="square-box">\( Ln( ) \)</div>
-      <p class="explanation">Aplicamos el logaritmo natural</p>
+        // Generar tarjetas de productos
+        const container = document.getElementById("products");
+        productos.forEach(producto => {
+            const div = document.createElement("div");
+            div.className = "product";
+            div.innerHTML = `
+                <img src="${producto.imagen}" alt="Camisa ${producto.nombre}" loading="lazy" data-imagen="${producto.imagen}">
+                <div class="product-info">
+                    <h3>${producto.nombre}</h3>
+                    <p>${producto.descripcion}</p>
+                    <div class="price">${producto.precio}</div>
+                </div>
+            `;
+            div.addEventListener("click", () => expandirProducto(producto));
+            container.appendChild(div);
+        });
 
-      <div class="step-box">\( Ln(3(x - \frac{1}{2})) \)</div>
-      <div class="square-box">$$\frac{()}{5}$$</div>
-      <p class="explanation">Dividimos todo entre 5</p>
+        // Mostrar ventana emergente con detalles
+        function expandirProducto(producto) {
+            const overlay = document.createElement("div");
+            overlay.className = "overlay";
+            overlay.addEventListener("click", cerrarExpandido);
 
-      <div class="step-box">\( \frac{Ln(3(x - \frac{1}{2}))}{5} \)</div>
-    </div>
+            // Mensaje para WhatsApp
+            const mensajeWhatsApp = encodeURIComponent(
+                `¡Hola! Quiero la ${producto.nombre}.\n` +
+                `Descripción: ${producto.descripcion}\n` +
+                `Precio: ${producto.precio}\n` +
+                `Características:\n${producto.extras.map(e => `- ${e}`).join("\n")}`
+            );
+            const enlaceWhatsApp = `https://wa.me/584129363013?text=${mensajeWhatsApp}`;
 
-    <div class="nav-buttons">
-      <div></div>
-      <button onclick="mostrarEjercicio(2)">Siguiente</button>
-    </div>
-  </div>
+            const expanded = document.createElement("div");
+            expanded.className = "expanded";
+            expanded.innerHTML = `
+                <span class="expanded-close" onclick="cerrarExpandido()">✕</span>
+                <img src="${producto.imagen}" alt="Camisa ${producto.nombre}" loading="lazy" data-imagen="${producto.imagen}">
+                <div class="expanded-details">
+                    <div>
+                        <h2>${producto.nombre}</h2>
+                        <p>${producto.descripcion}</p>
+                        <div class="label">Características:</div>
+                        <ul>
+                            ${producto.extras.map(e => `<li>${e}</li>`).join("")}
+                        </ul>
+                        <p class="price">Precio: ${producto.precio}</p>
+                    </div>
+                    <button onclick="window.location.href='${enlaceWhatsApp}'">¡Quiero esta!</button>
+                </div>
+            `;
 
-  <!-- Ejercicio 2 -->
-  <div class="container" id="ejercicio2">
-    <div class="formula-title">
-      <p> \( e^{3.2y - 0.41} + 1.14 \)</p>
-    </div>
+            document.body.appendChild(overlay);
+            document.body.appendChild(expanded);
+        }
 
-    <div class="steps-container">
-      <div class="step-box-first">\( y \)</div>
-      <div class="square-box">\( () \cdot y \)</div>
-      <p class="explanation">Multiplicamos \( y \) por 3.2</p>
-
-      <div class="step-box">\( 3.2y \)</div>
-      <div class="square-box">\( ()-0.41 \)</div>
-      <p class="explanation">A la expresión le restamos 0.41</p>
-
-      <div class="step-box">\( 3.2y - 0.41 \)</div>
-      <div class="square-box">\( e^{()} \)</div>
-      <p class="explanation">Elevamos \( e \) a la expresión anterior</p>
-
-      <div class="step-box">\( e^{3.2y - 0.41} \)</div>
-      <div class="square-box">\( ()+ 1.14 \)</div>
-      <p class="explanation">Finalmente, sumamos 1.14 al resultado</p>
-
-      <div class="step-box">\( e^{3.2y - 0.41} + 1.14 \)</div>
-    </div>
-
-    <div class="nav-buttons">
-      <button onclick="mostrarEjercicio(1)">Anterior</button>
-      <div></div>
-    </div>
-  </div>
-
-  <script>
-    function mostrarEjercicio(n) {
-      document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
-      document.getElementById(`ejercicio${n}`).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    document.querySelectorAll('.step-box').forEach((el) => {
-      el.addEventListener('mouseover', () => {
-        el.style.transform = 'scale(1.1)';
-      });
-      el.addEventListener('mouseout', () => {
-        el.style.transform = 'scale(1)';
-      });
-    });
-  </script>
-
+        // Cerrar ventana emergente
+        function cerrarExpandido() {
+            document.querySelectorAll(".overlay, .expanded").forEach(e => e.remove());
+        }
+    </script>
 </body>
 </html>
