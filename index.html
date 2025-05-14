@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: '', sans-serif;
             background: linear-gradient(135deg, #000000, #1c2526);
             color: #e0e0e0;
             overflow-x: hidden;
@@ -54,7 +54,7 @@
         }
 
         header h1 {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'fantasy', sans-serif;
             font-size: 2.5rem;
             animation: bounce 2s ease-in-out infinite;
             text-transform: uppercase;
@@ -74,7 +74,7 @@
 
         header p {
             font-size: 1rem;
-            margin-top: 0.5rem;
+            margin-top: 0.9rem;
             color: #b0b0b0;
         }
 
@@ -95,7 +95,7 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1rem;
             padding: 0 0.5rem;
         }
@@ -139,10 +139,10 @@
 
         .product img {
             width: 100%;
-            height: 180px;
+            height: 220px;
             object-fit: contain;
             background: #2c2f3a;
-            padding: 0.5rem;
+            padding: 0.3rem;
             transition: transform 0.4s ease;
             filter: brightness(90%);
             max-width: 100%;
@@ -154,7 +154,7 @@
         }
 
         .product-info {
-            padding: 1rem;
+            padding: 1.4rem; /* Más espacio vertical */
         }
 
         .product h3 {
@@ -174,7 +174,34 @@
         .price {
             font-weight: bold;
             font-size: 1.1rem;
-            color: #ff0048;
+            color: #00FF00;
+            margin-bottom: 0.8rem; /* Más separación del botón */
+        }
+
+        .product-button {
+            width: 100%;
+            padding: 0.4rem;
+            background: linear-gradient(45deg, #ff0048, #00d4ff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            animation: pulse 2s infinite;
+            margin-top: 0.6rem; /* Más separación del precio */
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .product-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.7);
+            background: linear-gradient(45deg, #00d4ff, #ff0048);
         }
 
         /* Ventana emergente */
@@ -205,12 +232,12 @@
             transform: translate(-50%, -50%);
             width: 90vw;
             max-width: 360px;
-            max-height: 65vh;
+            max-height: 90vh;
             background: #1c2526;
             z-index: 999;
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
-            overflow: hidden;
+            overflow-y: auto;
             animation: popUp 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
             display: flex;
             flex-direction: column;
@@ -230,20 +257,17 @@
 
         .expanded img {
             width: 100%;
-            height: 160px;
+            height: 300px;
             object-fit: contain;
             background: #1c2526;
-            padding: 0.5rem;
+            padding: 0.3rem 0;
             filter: brightness(90%);
             border-bottom: 1px solid #00d4ff;
             max-width: 100%;
         }
 
         .expanded-details {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
+            padding: 1.2rem;
         }
 
         .expanded-details h2 {
@@ -279,18 +303,17 @@
 
         .expanded-details .price {
             font-size: 0.8rem;
-            margin-bottom: 0.4rem;
-            color: #ff0048;
+            margin-bottom: 0.6rem;
         }
 
         .expanded-details button {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.9rem;
             background: linear-gradient(45deg, #ff0048, #00d4ff);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
@@ -299,7 +322,6 @@
             letter-spacing: 1.2px;
             animation: pulse 2s infinite;
             margin-top: 0.5rem;
-            padding-bottom: 1rem;
             position: sticky;
             bottom: 0;
             z-index: 10;
@@ -341,7 +363,7 @@
         }
 
         .expanded-close:hover {
-            color: #ff0048;
+            color: #D4AF37;
             transform: rotate(360deg);
         }
 
@@ -359,11 +381,11 @@
 <body>
     <header>
         <h1>Starboy</h1>
-        <p>Camisas con estilo para cualquier vibe</p>
+        <p>Descubre lo que Starboy tiene para tí "𝗖𝗼𝗻 𝗲𝗻𝘃𝗶𝗼𝘀 𝗮 𝘁𝗼𝗱𝗮 𝗩𝗲𝗻𝗲𝘇𝘂𝗲𝗹𝗮"</p>
     </header>
 
     <div class="content">
-        <h2>Nuestras Camisas</h2>
+        <h2>Nuestros Productos</h2>
         <div class="products" id="products"></div>
     </div>
 
@@ -372,61 +394,70 @@
     </footer>
 
     <script>
-        // Lista de camisas oversize y deportivas (compatible con ES15/ES2024)
+        // Lista de camisas oversize y deportivas
         const productos = [
             {
-                nombre: "Oversize Urban Vibe",
-                descripcion: "Camisa oversize con estampado gráfico urbano.",
-                precio: "$35",
+                nombre: "Camisa Inter de Miami",
+                descripcion: "Camisa deportiva Inter de Miami, dorsal 10 Messi",
+                precio: "$18",
                 extras: [
                     "100% algodón",
-                    "Tallas M-XL",
+                    "Talla L",
                     "Estampado duradero",
-                    "Corte relajado"
+                    "Todos los parches incluidos"
                 ],
-                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+                imagen: "https://images.unsplash.com/photo-1747196417736-35ad9ff5563d?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
             {
-                nombre: "Oversize Neon Wave",
-                descripcion: "Camisa oversize con diseño neón vibrante.",
-                precio: "$40",
+                nombre: "Camisa Los Santos f.c",
+                descripcion: "Camisa deportiva, Los Santos 11 Neymar Jr",
+                precio: "$20",
                 extras: [
                     "Tejido transpirable",
-                    "Tallas S-XXL",
-                    "Detalles reflectantes",
-                    "Streetwear"
+                    "Talla L",
+                    "Detalles termosellados",
+                    "100% algodón"
                 ],
-                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+                imagen: "https://images.unsplash.com/photo-1747198083911-bf3a0dd7acb0?q=80&w=1114&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
             {
-                nombre: "Fútbol Pro Madrid",
-                descripcion: "Réplica oficial del Real Madrid.",
-                precio: "$50",
+                nombre: "Camisa de Los Leones ",
+                descripcion: "Camisa AAA de los Leones del Caracas",
+                precio: "$30",
                 extras: [
-                    "Poliéster reciclado",
+                    "100% algodón",
                     "Anti-sudor",
-                    "Tallas S-XL",
+                    "Talla L",
                     "Escudo bordado"
                 ],
-                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+                imagen: "https://images.unsplash.com/photo-1747198710058-8cb228cde73c?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             },
             {
-                nombre: "Fútbol Custom Strike",
-                descripcion: "Camisa personalizable con tu nombre.",
-                precio: "$55",
+                nombre: "Camisa Manchester United 2007",
+                descripcion: "Camisa deportiva Manchester United , dorsal 7 Cristiano Ronaldo ",
+                precio: "$30",
                 extras: [
-                    "Diseño a medida",
+                    "100% algodón",
                     "Tejido ligero",
-                    "Tallas M-XXL",
-                    "Colores personalizados"
+                    "Talla L",
+                    "Todos los parches incluidos termosellados"
                 ],
-                imagen: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+                imagen: "https://images.unsplash.com/photo-1747199110820-22a3c39e6ab2?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             }
         ];
 
         // Generar tarjetas de productos
         const container = document.getElementById("products");
         productos.forEach(producto => {
+            // Crear enlace de WhatsApp para la tarjeta
+            const mensajeWhatsApp = encodeURIComponent(
+                `¡Hola! Quiero la ${producto.nombre}.\n` +
+                `Descripción: ${producto.descripcion}\n` +
+                `Precio: ${producto.precio}\n` +
+                `Características:\n${producto.extras.map(e => `- ${e}`).join("\n")}`
+            );
+            const enlaceWhatsApp = `https://wa.me/584129363013?text=${mensajeWhatsApp}`;
+
             const div = document.createElement("div");
             div.className = "product";
             div.innerHTML = `
@@ -435,9 +466,15 @@
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion}</p>
                     <div class="price">${producto.precio}</div>
+                    <a href="${enlaceWhatsApp}" class="product-button">¡Quiero esta!</a>
                 </div>
             `;
-            div.addEventListener("click", () => expandirProducto(producto));
+            div.addEventListener("click", (e) => {
+                // Evitar que el clic en el botón abra el modal
+                if (!e.target.closest('.product-button')) {
+                    expandirProducto(producto);
+                }
+            });
             container.appendChild(div);
         });
 
